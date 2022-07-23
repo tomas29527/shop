@@ -11,8 +11,7 @@
     <!--喜欢-->
     <Like/>
     <!--楼层-->
-    <Floor/>
-    <Floor/>
+    <Floor v-for="floorInfo in homeFloorList" :key="floorInfo.id" :floorInfo="floorInfo" />
     <!--商标-->
     <Brand/>
   </div>
@@ -25,6 +24,7 @@ import Rank from '@/pages/Home/Rank'
 import Like from '@/pages/Home/Like'
 import Floor from '@/pages/Home/Floor'
 import Brand from '@/pages/Home/Brand'
+import {mapState} from 'vuex'
 export default {
   name: 'Home',
   components:{
@@ -34,6 +34,14 @@ export default {
     Like,
     Floor,
     Brand
+  },
+  computed:{
+    ...mapState({
+      homeFloorList:state=>state.home.homeFloorList
+    })
+  },
+  mounted() {
+    this.$store.dispatch('getHomeFloorList')
   }
 }
 </script>

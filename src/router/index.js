@@ -38,16 +38,19 @@ const vueRouter = new VueRouter({
             redirect: '/home'
         }, {
             path: '/home',
-            component: () => import('@/pages/Home')
+            component: () => import('@/pages/Home'),
+            meta: {isHideFooter: true}
         }, {
-            path: '/search',
-            component: () => import('@/pages/Search')
+            name: 'search',
+            path: '/search/:keyword?',
+            component: () => import('@/pages/Search'),
+            meta: {isHideFooter: true}
         }, {
             path: '/login',
-            component: () => import('@/pages/Login')
+            component: () => import('@/pages/Login'),
         }, {
             path: '/register',
-            component: () => import('@/pages/Register')
+            component: () => import('@/pages/Register'),
         }]
 })
 

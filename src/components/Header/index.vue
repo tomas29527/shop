@@ -50,8 +50,11 @@ export default {
   },
   methods: {
     search() {
-      console.log("======",this.keyword)
-      this.$router.push('/search')
+      let location ={name:"search",params:{keyword:this.keyword||undefined}}
+      if(this.$route.query){
+        location.query=this.$route.query
+      }
+      this.$router.push(location)
     }
   }
 }

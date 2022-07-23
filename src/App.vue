@@ -3,7 +3,7 @@
     <Header/>
     <!--路由组件-->
     <router-view></router-view>
-    <Footer/>
+    <Footer v-show="$route.meta.isHideFooter"/>
   </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
   components: {
     Header,
     Footer
+  },
+  mounted() {
+    this.$store.dispatch('getCategoryList')
   }
 }
 </script>
