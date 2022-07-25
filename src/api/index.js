@@ -22,3 +22,11 @@ export const reqFloorList=()=>{
         method: 'get'
     })
 }
+//获取搜索模块数据 地址:/api/list  请求方式:post  参数:需要带参数
+export const reqSearchList=(params={})=>{
+    return requests({
+        url: '/list',
+        method: 'post',
+        data:params
+    })
+}

@@ -16,6 +16,10 @@ Vue.component(Carousel.name, Carousel) //轮播图
 
 new Vue({
     render: h => h(App),
+    //注册全局事件总线
+    beforeCreate() {
+        Vue.prototype.$bus=this;
+    },
     router,
     store,
 }).$mount('#app')

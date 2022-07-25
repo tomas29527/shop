@@ -56,6 +56,13 @@ export default {
       }
       this.$router.push(location)
     }
+  },mounted() {
+    this.$bus.$on('keywordClear',()=>{
+      this.keyword=''
+    })
+  },
+  beforeDestroy() {
+    this.$bus.off('keywordClear')
   }
 }
 </script>

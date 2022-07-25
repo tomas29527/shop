@@ -18,7 +18,7 @@ requests.interceptors.response.use((resp) => {
     // 未设置状态码则默认成功状态
     const code = resp.data.code || 200;
     // 获取错误信息
-    const msg = errorCode[code] || resp.data.msg || errorCode['default']
+    const msg = errorCode[code] || resp.data.message || errorCode['default']
     if (code != 200) {
         alert(msg)
         return Promise.reject('error')
