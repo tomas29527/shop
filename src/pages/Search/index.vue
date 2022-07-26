@@ -71,35 +71,8 @@
 
             </ul>
           </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+          <!--分页组件-->
+         <Pagination :pageNo="searchParams.pageNo" :pageSize="searchParams.pageSize" :totalSize="totalSize" :continues="5" @getPageNo="getPageNo"/>
         </div>
       </div>
     </div>
@@ -108,7 +81,7 @@
 
 <script>
 import SearchSelector from './SearchSelector/SearchSelector'
-import {mapGetters} from 'vuex'
+import {mapGetters,mapState} from 'vuex'
 
 export default {
   name: 'Search',
@@ -125,9 +98,9 @@ export default {
         keyword: "",
         order: "1:desc",
         //第几页
-        pageNo: 1,
+        pageNo: 3,
         //每一页展示条数
-        pageSize: 10,
+        pageSize: 5,
         //平台属性的操作
         props: [],
         //品牌
@@ -181,6 +154,10 @@ export default {
       }
       this.searchParams.order=newSort
       this.getSearchData()
+    },
+    getPageNo(page){
+      this.searchParams.pageNo=page
+      this.getSearchData()
     }
   },
   watch: {
@@ -213,7 +190,10 @@ export default {
       }else {
         return true;
       }
-    }
+    },
+    ...mapState({
+      totalSize:state=>state.search.searchList.total
+    })
   }
 }
 </script>
