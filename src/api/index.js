@@ -30,3 +30,10 @@ export const reqSearchList=(params={})=>{
         data:params
     })
 }
+//获取商品详细信息
+export const reqGoodsInfo=(skuId)=>{
+    return requests({
+        url: `/item/${skuId}`,
+        method: 'get',
+    })
+}

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import routes from './routes'
 
 Vue.use(VueRouter)
 
@@ -32,26 +33,10 @@ VueRouter.prototype.replace = function (location, resolve, reject) {
     }
 };
 const vueRouter = new VueRouter({
-    routes: [
-        {
-            path: '/',
-            redirect: '/home'
-        }, {
-            path: '/home',
-            component: () => import('@/pages/Home'),
-            meta: {isHideFooter: true}
-        }, {
-            name: 'search',
-            path: '/search/:keyword?',
-            component: () => import('@/pages/Search'),
-            meta: {isHideFooter: true}
-        }, {
-            path: '/login',
-            component: () => import('@/pages/Login'),
-        }, {
-            path: '/register',
-            component: () => import('@/pages/Register'),
-        }]
+    routes,
+    scrollBehavior: function (to, from, savedPosition) {
+        return savedPosition || {  y: 0 }
+    }
 })
 
 export default vueRouter

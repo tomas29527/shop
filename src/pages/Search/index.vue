@@ -47,7 +47,7 @@
               <li class="yui3-u-1-5" v-for="goods in goodsList" :key="goods.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"><img :src="goods.defaultImg"/></a>
+                    <router-link  :to="`/detail/${goods.id}`"><img :src="goods.defaultImg"/></router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -98,7 +98,7 @@ export default {
         keyword: "",
         order: "1:desc",
         //第几页
-        pageNo: 3,
+        pageNo: 1,
         //每一页展示条数
         pageSize: 5,
         //平台属性的操作
